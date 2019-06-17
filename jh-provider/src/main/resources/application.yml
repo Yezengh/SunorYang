@@ -1,0 +1,31 @@
+server:
+  port: 9001
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/jtdb?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: root
+
+dubbo:
+  scan:
+    basePackages: com.jh
+  application:
+    name: provider-user
+  registry:
+    address: zookeeper://192.168.92.131:2181?backup=192.168.92.131:2182,192.168.92.131:2183
+  protocol:
+    name: dubbo
+    port: 20880
+
+mybatis-plus:
+  type-aliases-package: com.jh.pojo
+  mapper-locations: classpath:/mybatis/mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.jh.mapper: debug
